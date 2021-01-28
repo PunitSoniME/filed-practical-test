@@ -1,0 +1,76 @@
+<form [formGroup]="creditCardForm">
+
+    <div class="form-group">
+        <label class="required-label d-block form-label" for="creditCardNumber"
+            [ngClass]="{'text-danger': creditCardForm.controls['creditCardNumber'].touched && creditCardForm.controls['creditCardNumber'].invalid }">
+            Credit Card Number</label>
+        <input type="text" class="form-control" id="creditCardNumber" name="creditCardNumber"
+            [ngClass]="{'is-invalid': creditCardForm.controls['creditCardNumber'].touched && creditCardForm.controls['creditCardNumber'].invalid }"
+            placeholder="Credit Card Number" formControlName="creditCardNumber" />
+
+        <small class="text-danger"
+            *ngIf="creditCardForm.controls['creditCardNumber'].touched && creditCardForm.controls['creditCardNumber'].invalid">
+            Credit card number is required.
+        </small>
+    </div>
+
+    <div class="form-group">
+        <label class="required-label d-block form-label" for="cardHolder"
+            [ngClass]="{'text-danger': creditCardForm.controls['cardHolder'].touched && creditCardForm.controls['cardHolder'].invalid }">
+            Card Holder Name</label>
+        <input type="text" class="form-control" id="cardHolder" name="cardHolder" placeholder="Card Holder Name"
+            [ngClass]="{'is-invalid': creditCardForm.controls['cardHolder'].touched && creditCardForm.controls['cardHolder'].invalid }"
+            formControlName="cardHolder" />
+
+        <small class="text-danger"
+            *ngIf="creditCardForm.controls['cardHolder'].touched && creditCardForm.controls['cardHolder'].invalid">
+            Card holder name is required.
+        </small>
+    </div>
+
+    <div class="form-group">
+        <label class="required-label d-block form-label" for="expirationDate"
+            [ngClass]="{'text-danger': creditCardForm.controls['expirationDate'].touched && creditCardForm.controls['expirationDate'].invalid }">
+            Expiration Date</label>
+        <input type="date" class="form-control" id="expirationDate" name="expirationDate" [min]="dateOfToday"
+            onkeydown="return false"
+            [ngClass]="{'is-invalid': creditCardForm.controls['expirationDate'].touched && creditCardForm.controls['expirationDate'].invalid }"
+            placeholder="Expiration Date" formControlName="expirationDate" />
+
+        <small class="text-danger"
+            *ngIf="creditCardForm.controls['expirationDate'].touched && creditCardForm.controls['expirationDate'].invalid">
+            Expiration date is required and must be greater than today's date.
+        </small>
+    </div>
+
+    <div class="form-group">
+        <label class="required-label d-block form-label" for="securityCode"
+            [ngClass]="{'text-danger': creditCardForm.controls['securityCode'].touched && creditCardForm.controls['securityCode'].invalid }">
+            Security Code (CVV)</label>
+        <input type="password" class="form-control" id="securityCode" name="securityCode"
+            [ngClass]="{'is-invalid': creditCardForm.controls['securityCode'].touched && creditCardForm.controls['securityCode'].invalid }"
+            placeholder="Security Code (CVV)" formControlName="securityCode" />
+
+        <small class="text-danger"
+            *ngIf="creditCardForm.controls['securityCode'].touched && creditCardForm.controls['securityCode'].invalid">
+            Security code (cvv) must be 3 digits only.
+        </small>
+    </div>
+
+    <div class="form-group">
+        <label class="required-label d-block form-label" for="amount"
+            [ngClass]="{'text-danger': creditCardForm.controls['amount'].touched && creditCardForm.controls['amount'].invalid }">Amount</label>
+        <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount"
+            [ngClass]="{'is-invalid': creditCardForm.controls['amount'].touched && creditCardForm.controls['amount'].invalid }"
+            formControlName="amount" />
+
+        <small class="text-danger"
+            *ngIf="creditCardForm.controls['amount'].touched && creditCardForm.controls['amount'].invalid">
+            Amount is required and must be greater than 0.
+        </small>
+    </div>
+
+    <button type="button" class="btn btn-primary w-100" [disabled]="creditCardForm.invalid"
+        (click)="addCreditCard()">Pay</button>
+
+</form>

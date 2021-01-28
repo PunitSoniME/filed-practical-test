@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+:root {
+    --primary: #0275d8;
+    --success: #5cb85c;
+    --primary-disabled: #6bbaff;
+    --danger: #d9534f;
+    --white: #fff;
+}
+
+body {
+    font-family: "Poppins";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.required-label::after {
+    content: " *";
+    font-weight: bold;
+    color: var(--danger);
+}
+
+.d-block {
+    display: block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.is-invalid {
+    border: 1px solid var(--danger);
+    box-shadow: 0px 0px 5px var(--danger);
+}
+
+@import "./styles/button.scss";

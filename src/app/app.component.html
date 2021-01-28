@@ -1,0 +1,48 @@
+<div class="main">
+
+  <div class="credit-card">
+    <button type="button" class="btn btn-primary" [routerLink]="[ '/credit-card-payment' ]">Enter Credit Card
+      Details</button>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="credit-card-info">
+
+    <div class="saved-card-details" *ngIf="creditCard | async">
+
+      <div class="saved-card-text">
+        <label>Payment Details</label>
+      </div>
+
+      <table class="saved-card-table">
+        <tr>
+          <td width="50%"><b>Credit Card Number :</b></td>
+          <td width="50%">{{(creditCard | async).creditCardNumber}}</td>
+        </tr>
+        <tr>
+          <td><b>Card Holder Name :</b></td>
+          <td>{{(creditCard | async).cardHolder}}</td>
+        </tr>
+        <tr>
+          <td><b>Expiration Date :</b></td>
+          <td>{{(creditCard | async).expirationDate}}</td>
+        </tr>
+        <tr>
+          <td><b>Security Code (CVV) :</b></td>
+          <td>{{(creditCard | async).securityCode}}</td>
+        </tr>
+        <tr>
+          <td><b>Amount :</b></td>
+          <td>{{(creditCard | async).amount}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" *ngIf="toastConfig">
+  <div [ngClass]="{'toast-success': toastConfig?.type == 'success'}">
+    {{toastConfig?.message}}
+  </div>
+</div>
