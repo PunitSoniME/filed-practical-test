@@ -8,13 +8,15 @@ import { environment } from 'src/environments/environment';
 })
 export class PaymentService {
 
-  api: string = environment.api;
+  api: string = environment.fakeApi;
 
   constructor(
     private httpService: HttpService
   ) { }
 
-  payAmount(payload: CreditCard) {
-    return this.httpService.postRequestWithFakeSuccessResponse(`${this.api}/pay-amount`, payload);
+  payAmount(data: CreditCard) {
+    //  This is fake api which I created from https://mocki.io/fake-json-api
+    //  This api will just return success response with success message
+    return this.httpService.postRequestWithFakeSuccessResponse(`${this.api}/v1/e5c12c3c`, data);
   }
 }

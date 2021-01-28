@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: "http://fakeapi.com"
+  fakeApi: "https://api.mocki.io"
 };
 
 /*

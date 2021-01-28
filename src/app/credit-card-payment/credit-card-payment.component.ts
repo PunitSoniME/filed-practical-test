@@ -13,6 +13,8 @@ import * as CreditCardActions from './../actions/credit-card.actions';
 })
 export class CreditCardPaymentComponent implements OnInit {
 
+  payButtonText: string = "Pay";
+
   date = new Date();
   dateOfToday = null;
 
@@ -41,17 +43,17 @@ export class CreditCardPaymentComponent implements OnInit {
   addCreditCard() {
     if (this.creditCardForm.valid) {
       const formValues = this.creditCardForm.value;
+      this.payButtonText = "Processing...";
 
-      this.paymentService.payAmount(formValues).then((response) => {
+      this.paymentService.payAmount(formValues).subscribe((response) => {
         this.store.dispatch(new CreditCardActions.AddCreditCard(formValues));
+        this.payButtonText = "Pay";
 
-        // Uncomment below line if you want to clear all values after success payment
-        // this.creditCardForm.reset();
-
+        // Comment below line if you want to keep entered credit card details
+        this.creditCardForm.reset();
       }, error => {
+        this.payButtonText = "Pay";
       })
-
-
     }
   }
 
